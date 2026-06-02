@@ -11,6 +11,17 @@ const state = {
   hideLowSample: false,
 };
 
+const TINTS = {
+  "var(--good)": "rgba(63,185,80,0.12)",
+  "var(--warn)": "rgba(210,153,34,0.12)",
+  "var(--bad)": "rgba(248,81,73,0.12)",
+  "var(--fg-3)": "rgba(107,119,131,0.12)",
+};
+
+function motionOK() {
+  return !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+}
+
 const format = {
   delaySeconds(seconds) {
     if (seconds === null || seconds === undefined) return "–";
@@ -39,12 +50,21 @@ const format = {
   },
 };
 
-function statusColour(percent, target) {
-  const styles = getComputedStyle(document.documentElement);
-  if (percent === null || percent === undefined) return styles.getPropertyValue("--faint");
-  if (percent >= target) return styles.getPropertyValue("--good");
-  if (percent >= target - 25) return styles.getPropertyValue("--warn");
-  return styles.getPropertyValue("--bad");
+function verdict(percent, target) {
+  if (percent === null || percent === undefined) return "var(--fg-3)";
+  if (percent >= target) return "var(--good)";
+  if (percent >= target - 25) return "var(--warn)";
+  return "var(--bad)";
+}
+
+function tint(colour) {
+  return TINTS[colour] || "rgba(255,255,255,0.06)";
+}
+
+function routePill(route, percent, target) {
+  const colour = verdict(percent, target);
+  const fill = tint(colour);
+  return `<span class="route-pill" style="color:${colour};background:${fill};border-color:${fill}">${route}</span>`;
 }
 
 function hasReadings(row) {
@@ -71,23 +91,33 @@ function renderChart() {
   const rows = sortedChartRows();
 
   if (!rows.length) {
-    container.innerHTML = '<p class="faint small" style="margin:6px 0">No routes with readings to chart yet.</p>';
+    container.innerHTML = '<p class="faint audit-small" style="margin:6px 0">No routes with readings to chart yet.</p>';
     return;
   }
 
   const target = state.target;
+  const grow = motionOK();
   container.innerHTML = rows
     .map((row) => {
-      const colour = statusColour(row.on_time_pct, target);
+      const colour = verdict(row.on_time_pct, target);
       const lowSampleClass = row.readings_in_gate < LOW_SAMPLE_THRESHOLD ? " lown" : "";
-      const width = Math.min(100, row.on_time_pct);
+      const final = Math.min(100, row.on_time_pct);
+      const width = grow ? 0 : final;
       return `<div class="bar-row${lowSampleClass}">
-      <div class="rlabel">${row.route}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${colour}"></div></div>
+      <div class="rlabel">${routePill(row.route, row.on_time_pct, target)}</div>
+      <div class="bar-track"><div class="bar-fill" data-w="${final}" style="width:${width}%;background:${colour}"></div></div>
       <div class="bar-meta">${row.on_time_pct.toFixed(1)}% <span class="n">n=${row.readings_in_gate}</span></div>
     </div>`;
     })
     .join("");
+
+  if (grow) {
+    requestAnimationFrame(() => {
+      container.querySelectorAll(".bar-fill").forEach((fill) => {
+        fill.style.width = fill.dataset.w + "%";
+      });
+    });
+  }
 
   drawTargetLine(container, target);
 }
@@ -143,14 +173,14 @@ function renderTable() {
   const body = document.querySelector("#routes tbody");
   body.innerHTML = sortedTableRows()
     .map((row) => {
-      const colour = statusColour(row.on_time_pct, state.target);
-      const flag =
-        row.readings_in_gate < LOW_SAMPLE_THRESHOLD
-          ? `<span class="lown">n=${row.readings_in_gate}${row.readings_in_gate === 0 ? ", no readings" : ", indicative"}</span>`
-          : "";
+      const colour = verdict(row.on_time_pct, state.target);
+      const low = row.readings_in_gate < LOW_SAMPLE_THRESHOLD;
+      const flag = low
+        ? `<span class="lown">n=${row.readings_in_gate}${row.readings_in_gate === 0 ? ", no readings" : ", indicative"}</span>`
+        : "";
       return `<tr>
-      <td class="route">${row.route}${flag}</td>
-      <td><span class="badge" style="background:${colour}1f;color:${colour}">${format.percent(row.on_time_pct)}</span></td>
+      <td class="rcell">${routePill(row.route, row.on_time_pct, state.target)}${flag}</td>
+      <td><span class="badge" style="color:${colour};background:${tint(colour)}">${format.percent(row.on_time_pct)}</span></td>
       <td>${format.delaySeconds(row.median_delay_s)}</td>
       <td>${format.delaySeconds(row.mean_delay_s)}</td>
       <td>${row.readings_in_gate}</td>
@@ -182,6 +212,51 @@ function wireTableSort() {
   });
 }
 
+function wireSections() {
+  document.querySelectorAll(".sec").forEach((section) => {
+    const head = section.querySelector(".sec-head");
+    const body = section.querySelector(".sec-body");
+    head.addEventListener("click", () => {
+      section.classList.toggle("collapsed");
+      const open = !section.classList.contains("collapsed");
+      head.setAttribute("aria-expanded", open ? "true" : "false");
+      animateSection(body, open);
+    });
+  });
+}
+
+function animateSection(body, open) {
+  if (!motionOK()) {
+    body.style.height = open ? "auto" : "0px";
+    return;
+  }
+  const from = body.getBoundingClientRect().height;
+  body.style.height = open ? "auto" : "0px";
+  const to = body.getBoundingClientRect().height;
+  if (from === to) return;
+  body.animate(
+    [{ height: from + "px" }, { height: to + "px" }],
+    { duration: 340, easing: "cubic-bezier(.4,0,.2,1)" }
+  );
+}
+
+function countUp(element, target, decimals) {
+  if (!motionOK()) {
+    element.textContent = target.toFixed(decimals);
+    return;
+  }
+  const duration = 650;
+  let start;
+  function step(now) {
+    if (start === undefined) start = now;
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    element.textContent = (target * eased).toFixed(decimals);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
 function showError(message) {
   const box = document.getElementById("err");
   box.textContent = message;
@@ -190,18 +265,26 @@ function showError(message) {
 
 function renderHeadline(data, day) {
   const overall = day.overall;
-  const colour = statusColour(overall.on_time_pct, state.target);
+  const colour = verdict(overall.on_time_pct, state.target);
 
   document.getElementById("opname").textContent = data.operator_name || data.operator || "the operator";
   document.getElementById("period-line").textContent =
     "Service day: " +
     format.serviceDate(day.service_date) +
-    (data.days.length > 1 ? ` · ${data.days.length} days collected` : "");
+    (data.days.length > 1 ? ` · ${data.days.length} days collected` : " · 1 day collected");
 
-  document.getElementById("ot-pct").textContent = overall.on_time_pct.toFixed(1);
+  countUp(document.getElementById("ot-pct"), overall.on_time_pct, 1);
+
   const fill = document.getElementById("ot-fill");
-  fill.style.width = Math.min(100, overall.on_time_pct) + "%";
+  const finalWidth = Math.min(100, overall.on_time_pct) + "%";
   fill.style.background = colour;
+  if (motionOK()) {
+    fill.style.width = "0%";
+    requestAnimationFrame(() => requestAnimationFrame(() => (fill.style.width = finalWidth)));
+  } else {
+    fill.style.width = finalWidth;
+  }
+
   document.getElementById("ot-tgt").style.left = state.target + "%";
   document.getElementById("tgt-label").textContent = "target " + state.target + "%";
   document.getElementById("ot-band").textContent = "On-time = " + (data.on_time_band || "");
@@ -245,6 +328,7 @@ async function load() {
   renderChart();
 }
 
+wireSections();
 wireTableSort();
 wireChartControls();
 load();
