@@ -27,17 +27,23 @@ sampling.
 
 A collector polls the operators' public SIRI-VM feeds continuously and matches
 each vehicle to a scheduled trip. When a bus passes within 150 m of a timing
-point, its lateness against the timetable is recorded. The timetable to measure
-against is layered from three open sources (BODS South West GTFS, operators'
-own BODS TransXChange, and the Traveline National Dataset) because no single one
-is complete. Daily rollups produce the operator, route, area, ward and fleet
-figures the site serves. Full detail is in AUDIT_METHODOLOGY.md.
+point, its lateness against the timetable is recorded. The timetable is layered
+from three open sources - BODS South West GTFS, operators' own BODS
+TransXChange, and the Traveline National Dataset - because no single source is
+complete. Daily rollups produce the operator, route, area, ward and fleet
+figures the site serves. Full measurement detail is in AUDIT_METHODOLOGY.md.
 
-- docs/        the static site (HTML, CSS, JS) and the daily data file
-- pipeline/    the collection, rollup and export code
-- AUDIT_METHODOLOGY.md   the measurement method and its limitations
+**Repository layout**
 
-## Data and licence
+- `docs/` - the static site (HTML, CSS, JS) and the daily data file
+- `pipeline/` - the collection, rollup and export scripts
+- `AUDIT_METHODOLOGY.md` - the measurement method and its limitations
+
+## Data sources and licence
+
+- **Real-time positions**: BODS SIRI-VM feed (Department for Transport)
+- **Timetables**: BODS South West GTFS, operators' own BODS TransXChange, and the Traveline National Dataset (TNDS)
+- **Fleet data**: [bustimes.org](https://bustimes.org) API - vehicle references resolved to make, model and fuel type
 
 Contains public sector information licensed under the Open Government Licence
 v3.0. This service uses information from the Department for Transport's Bus Open
