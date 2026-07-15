@@ -119,7 +119,7 @@ or regulator measurement that uses different sampling.
 Changes that affect comparability of the published figures are recorded
 here.
 
-**13 July 2026 — collector replaced.** The process that matches live buses
+**13 July 2026 - collector replaced.** The process that matches live buses
 to timetabled trips was rewritten. Three behavioural changes affect the
 figures: a match is now rejected unless the candidate schedule has a stop
 within 3 km of the vehicle's reported position; where several schedules
@@ -131,7 +131,7 @@ percentage points on weekdays and increased the number of matched trips by
 around 15%. Figures before this date came from the old process and are not
 directly comparable.
 
-**14 July 2026 — timing points restored on TransXChange-sourced routes.**
+**14 July 2026 - timing points restored on TransXChange-sourced routes.**
 Routes that enter the timetable via TransXChange rather than GTFS (42, 43,
 44, 45, 70, 74, 373, 376x, AZ1, AZ2, N43, X12 and the SB school services)
 carried no timing-point flags, because the conversion recognised only the
