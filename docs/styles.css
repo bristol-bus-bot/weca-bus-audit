@@ -47,6 +47,29 @@
   box-sizing: border-box;
 }
 
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  transform: translateY(-160%);
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: var(--bg);
+  background: var(--fg-1);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--target);
+  outline-offset: 3px;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -98,6 +121,21 @@ a {
   font-size: 1rem;
   margin: 0;
   font-weight: 500;
+}
+
+.live-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.live-link:hover,
+.live-link:focus-visible {
+  color: var(--fg);
 }
 
 .op-bar {

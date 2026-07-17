@@ -24,6 +24,21 @@ const TINTS = {
   "var(--fg-3)": "rgba(107,119,131,0.12)",
 };
 
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[character]);
+}
+
+function finiteNumber(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
 function motionOK() {
   return !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 }
@@ -31,6 +46,7 @@ function motionOK() {
 const format = {
   delaySeconds(seconds) {
     if (seconds === null || seconds === undefined) return "–";
+    seconds = finiteNumber(seconds);
     const sign = seconds > 0 ? "+" : seconds < 0 ? "−" : "";
     const absolute = Math.abs(seconds);
     const minutes = Math.floor(absolute / 60);
@@ -52,7 +68,9 @@ const format = {
     });
   },
   percent(value) {
-    return value === null || value === undefined ? "–" : value.toFixed(1) + "%";
+    return value === null || value === undefined
+      ? "–"
+      : finiteNumber(value).toFixed(1) + "%";
   },
 };
 
@@ -70,7 +88,7 @@ function tint(colour) {
 function routePill(route, percent, target) {
   const colour = verdict(percent, target);
   const fill = tint(colour);
-  return `<span class="route-pill" style="color:${colour};background:${fill};border-color:${fill}">${route}</span>`;
+  return `<span class="route-pill" style="color:${colour};background:${fill};border-color:${fill}">${escapeHTML(route)}</span>`;
 }
 
 function hasReadings(row) {
@@ -114,12 +132,14 @@ function renderRouteGrid() {
     .map((row) => {
       const colour = verdict(row.on_time_pct, target);
       const low = (row.readings_in_gate || 0) < LOW_SAMPLE_THRESHOLD;
-      const pct = hasReadings(row) ? row.on_time_pct.toFixed(0) + "%" : "–";
+      const pct = hasReadings(row) ? finiteNumber(row.on_time_pct).toFixed(0) + "%" : "–";
       const sel = state.selectedRoute !== null && String(row.route) === String(state.selectedRoute) ? " selected" : "";
       const freq = row.frequent ? '<span class="cell-freq">freq</span>' : "";
-      return `<button type="button" class="route-cell${low ? " lown" : ""}${sel}" data-route="${row.route}"
+      const route = escapeHTML(row.route);
+      return `<button type="button" class="route-cell${low ? " lown" : ""}${sel}" data-route="${route}"
+        aria-pressed="${sel ? "true" : "false"}"
         style="color:${colour};background:${tint(colour)};border-color:${tint(colour)}">
-        <span class="cell-route">${row.route}</span>
+        <span class="cell-route">${route}</span>
         <span class="cell-pct">${pct}</span>${freq}
       </button>`;
     })
@@ -132,12 +152,12 @@ function renderRouteGrid() {
 
 function selectRoute(route) {
   state.selectedRoute = String(state.selectedRoute) === String(route) ? null : route;
-  document.querySelectorAll("#route-grid .route-cell").forEach((cell) =>
-    cell.classList.toggle(
-      "selected",
-      state.selectedRoute !== null && cell.dataset.route === String(state.selectedRoute)
-    )
-  );
+  document.querySelectorAll("#route-grid .route-cell").forEach((cell) => {
+    const selected = state.selectedRoute !== null
+      && cell.dataset.route === String(state.selectedRoute);
+    cell.classList.toggle("selected", selected);
+    cell.setAttribute("aria-pressed", selected ? "true" : "false");
+  });
   renderRouteDetail();
 }
 
@@ -161,22 +181,22 @@ function renderRouteDetail() {
     ? '<span class="freq-tag" title="High-frequency service: officially judged by wait time, not timetable punctuality">frequent</span>'
     : "";
   const lowNote = low
-    ? `<span class="lown">n=${row.readings_in_gate}${row.readings_in_gate === 0 ? ", no readings" : ", indicative"}</span>`
+    ? `<span class="lown">n=${finiteNumber(row.readings_in_gate)}${finiteNumber(row.readings_in_gate) === 0 ? ", no readings" : ", indicative"}</span>`
     : "";
   panel.className = "route-detail open";
   panel.innerHTML = `
     <div class="rd-head">
-      <span class="route-pill" style="color:${colour};background:${tint(colour)};border-color:${tint(colour)}">${row.route}</span>
+      <span class="route-pill" style="color:${colour};background:${tint(colour)};border-color:${tint(colour)}">${escapeHTML(row.route)}</span>
       <span class="badge" style="color:${colour};background:${tint(colour)}">${format.percent(row.on_time_pct)} on-time</span>
       ${freqNote}${lowNote}
     </div>
     <div class="rd-stats">
       <div class="rd-stat"><span class="k">Median</span><span class="v">${format.delaySeconds(row.median_delay_s)}</span></div>
       <div class="rd-stat"><span class="k">Mean</span><span class="v">${format.delaySeconds(row.mean_delay_s)}</span></div>
-      <div class="rd-stat"><span class="k">Readings</span><span class="v">${(row.readings_in_gate || 0).toLocaleString()}</span></div>
-      <div class="rd-stat"><span class="k">Early</span><span class="v">${row.early}</span></div>
-      <div class="rd-stat"><span class="k">On time</span><span class="v">${row.on_time}</span></div>
-      <div class="rd-stat"><span class="k">Late</span><span class="v">${row.late}</span></div>
+      <div class="rd-stat"><span class="k">Readings</span><span class="v">${finiteNumber(row.readings_in_gate).toLocaleString()}</span></div>
+      <div class="rd-stat"><span class="k">Early</span><span class="v">${finiteNumber(row.early).toLocaleString()}</span></div>
+      <div class="rd-stat"><span class="k">On time</span><span class="v">${finiteNumber(row.on_time).toLocaleString()}</span></div>
+      <div class="rd-stat"><span class="k">Late</span><span class="v">${finiteNumber(row.late).toLocaleString()}</span></div>
     </div>`;
 }
 
@@ -189,7 +209,9 @@ function drawTargetLine(container, target) {
   const line = document.createElement("div");
   line.className = "tgtline";
   line.style.left = offsetX + "px";
-  line.innerHTML = `<span>${target}% target</span>`;
+  const label = document.createElement("span");
+  label.textContent = `${finiteNumber(target)}% target`;
+  line.appendChild(label);
   container.appendChild(line);
 }
 
@@ -198,6 +220,8 @@ function wireChartControls() {
     button.addEventListener("click", () => {
       document.querySelectorAll(".ctl").forEach((other) => other.classList.remove("active"));
       button.classList.add("active");
+      document.querySelectorAll(".ctl").forEach((other) =>
+        other.setAttribute("aria-pressed", other === button ? "true" : "false"));
       state.chartSort = button.dataset.sort;
       renderRouteGrid();
     });
@@ -263,7 +287,10 @@ function renderOperatorTabs() {
   const container = document.getElementById("operator-tabs");
   const present = (state.data.operators || []).filter((o) => state.day.by_operator[o.code]);
   container.innerHTML = present
-    .map((o) => `<button class="op-tab${o.code === state.operator ? " active" : ""}" data-op="${o.code}">${o.name}</button>`)
+    .map((o) => {
+      const active = o.code === state.operator;
+      return `<button type="button" role="tab" aria-selected="${active ? "true" : "false"}" class="op-tab${active ? " active" : ""}" data-op="${escapeHTML(o.code)}">${escapeHTML(o.name)}</button>`;
+    })
     .join("");
   container.querySelectorAll(".op-tab").forEach((btn) => {
     btn.addEventListener("click", () => selectOperator(btn.dataset.op));
@@ -275,9 +302,11 @@ function selectOperator(code) {
   state.selectedRoute = null;
   const opData = state.day.by_operator[code] || { overall: {}, routes: [] };
   state.rows = opData.routes || [];
-  document.querySelectorAll("#operator-tabs .op-tab").forEach((b) =>
-    b.classList.toggle("active", b.dataset.op === code)
-  );
+  document.querySelectorAll("#operator-tabs .op-tab").forEach((b) => {
+    const active = b.dataset.op === code;
+    b.classList.toggle("active", active);
+    b.setAttribute("aria-selected", active ? "true" : "false");
+  });
   renderHeadline(opData);
   renderRouteGrid();
   renderGeography(opData);
@@ -339,13 +368,14 @@ async function load() {
     showError(
       "Couldn't load audit_data.json (" +
         error.message +
-        "). If you opened this file directly, run a local server instead: cd audit_site && python -m http.server 8000, then visit http://localhost:8000"
+        "). If you opened this file directly, run a local server instead: cd audit-site && python -m http.server 8000, then visit http://localhost:8000"
     );
     return;
   }
 
   state.data = data;
-  state.target = data.target_pct ?? DEFAULT_TARGET_PCT;
+  state.target = Math.min(100, Math.max(0,
+    finiteNumber(data.target_pct, DEFAULT_TARGET_PCT)));
 
   const day = data.days && data.days[data.days.length - 1];
   if (!day) {
@@ -397,12 +427,13 @@ function renderGeography(opData) {
   container.innerHTML = rows
     .map((row) => {
       const colour = verdict(row.on_time_pct, target);
-      const final = Math.min(100, row.on_time_pct);
+      const final = Math.min(100, Math.max(0, finiteNumber(row.on_time_pct)));
       const width = grow ? 0 : final;
+      const key = escapeHTML(row.key);
       return `<div class="bar-row geo-row">
-      <div class="rlabel geo-label" title="${row.key}">${row.key}</div>
+      <div class="rlabel geo-label" title="${key}">${key}</div>
       <div class="bar-track"><div class="bar-fill" data-w="${final}" style="width:${width}%;background:${colour}"></div></div>
-      <div class="bar-meta">${row.on_time_pct.toFixed(1)}% <span class="n">n=${row.readings_in_gate.toLocaleString()}</span></div>
+      <div class="bar-meta">${finiteNumber(row.on_time_pct).toFixed(1)}% <span class="n">n=${finiteNumber(row.readings_in_gate).toLocaleString()}</span></div>
     </div>`;
     })
     .join("");
@@ -422,6 +453,8 @@ function wireGeoControls() {
     button.addEventListener("click", () => {
       document.querySelectorAll(".gctl").forEach((o) => o.classList.remove("active"));
       button.classList.add("active");
+      document.querySelectorAll(".gctl").forEach((other) =>
+        other.setAttribute("aria-pressed", other === button ? "true" : "false"));
       state.geoView = button.dataset.geo;
       redraw();
     });
@@ -430,6 +463,8 @@ function wireGeoControls() {
     button.addEventListener("click", () => {
       document.querySelectorAll(".gsort").forEach((o) => o.classList.remove("active"));
       button.classList.add("active");
+      document.querySelectorAll(".gsort").forEach((other) =>
+        other.setAttribute("aria-pressed", other === button ? "true" : "false"));
       state.geoSort = button.dataset.gsort;
       redraw();
     });
@@ -437,6 +472,7 @@ function wireGeoControls() {
 }
 
 function electricDonut(electricPct) {
+  electricPct = Math.min(100, Math.max(0, finiteNumber(electricPct)));
   const r = 52;
   const circ = 2 * Math.PI * r;
   const dash = (electricPct / 100) * circ;
@@ -481,10 +517,12 @@ function renderFleet(opData) {
     list.innerHTML = "";
     return;
   }
-  const totalReads = fleet.reduce((s, m) => s + m.readings_in_gate, 0);
-  const elecReads = fleet.filter((m) => m.electric).reduce((s, m) => s + m.readings_in_gate, 0);
-  const totalVeh = fleet.reduce((s, m) => s + (m.vehicles || 0), 0);
-  const elecVeh = fleet.filter((m) => m.electric).reduce((s, m) => s + (m.vehicles || 0), 0);
+  const totalReads = fleet.reduce((s, m) => s + finiteNumber(m.readings_in_gate), 0);
+  const elecReads = fleet.filter((m) => m.electric)
+    .reduce((s, m) => s + finiteNumber(m.readings_in_gate), 0);
+  const totalVeh = fleet.reduce((s, m) => s + finiteNumber(m.vehicles), 0);
+  const elecVeh = fleet.filter((m) => m.electric)
+    .reduce((s, m) => s + finiteNumber(m.vehicles), 0);
   const elecPct = totalReads ? (100 * elecReads / totalReads) : 0;
 
   card.innerHTML = `
@@ -500,12 +538,12 @@ function renderFleet(opData) {
 
   list.innerHTML = fleet.map((m) => {
     const colour = verdict(m.on_time_pct, state.target);
-    const routes = (m.routes || []).map((r) => `<span class="route-pill mini" style="color:${colour};background:${tint(colour)};border-color:${tint(colour)}">${r[0]}</span>`).join("");
+    const routes = (m.routes || []).map((r) => `<span class="route-pill mini" style="color:${colour};background:${tint(colour)};border-color:${tint(colour)}">${escapeHTML(r[0])}</span>`).join("");
     const ev = m.electric ? '<span class="ev-tag">⚡ electric</span>' : "";
     return `<div class="model-row">
       <div class="model-head">
-        <span class="model-name"><a class="model-link" href="${wikiLink(m.model)}" target="_blank" rel="noopener">${m.model}</a>${ev}</span>
-        <span class="model-stats"><span class="badge" style="color:${colour};background:${tint(colour)}">${format.percent(m.on_time_pct)}</span> <span class="faint">${m.vehicles} buses · n=${m.readings_in_gate.toLocaleString()}</span></span>
+        <span class="model-name"><a class="model-link" href="${escapeHTML(wikiLink(m.model))}" target="_blank" rel="noopener noreferrer">${escapeHTML(m.model)}</a>${ev}</span>
+        <span class="model-stats"><span class="badge" style="color:${colour};background:${tint(colour)}">${format.percent(m.on_time_pct)}</span> <span class="faint">${finiteNumber(m.vehicles)} buses · n=${finiteNumber(m.readings_in_gate).toLocaleString()}</span></span>
       </div>
       <div class="model-routes">${routes}</div>
     </div>`;
