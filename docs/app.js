@@ -383,7 +383,7 @@ async function load() {
     return;
   }
 
-  // Legacy fallback: old single-operator JSON had overall/routes but no by_operator.
+  // Support snapshots that predate per-operator summaries.
   if (!day.by_operator) {
     day.by_operator = { FBRI: { overall: day.overall, routes: day.routes || [] } };
     data.operators = [{ code: "FBRI", name: data.operator_name || "First Bristol" }];
