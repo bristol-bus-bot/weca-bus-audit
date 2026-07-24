@@ -26,7 +26,7 @@
   ],
   "target_pct": 95,
   "on_time_band": "1 minute early to 5 min 59s late (DfT statistical definition)",
-  "generated_at": "2026-07-24T20:36:28.718089+00:00",
+  "generated_at": "2026-07-24T20:46:50.699083+00:00",
   "days": [
     {
       "service_date": "20260602",
@@ -360572,7 +360572,7 @@
               "electric": true,
               "fuel": "electric",
               "vehicles": 121,
-              "readings_in_gate": 7757,
+              "readings_in_gate": 7808,
               "on_time_pct": 55.7,
               "median_delay_s": 30,
               "routes": [
@@ -360582,11 +360582,11 @@
                 ],
                 [
                   "76",
-                  1020
+                  1047
                 ],
                 [
                   "75",
-                  997
+                  1021
                 ],
                 [
                   "74",
@@ -360615,13 +360615,13 @@
               "electric": false,
               "fuel": "gas",
               "vehicles": 83,
-              "readings_in_gate": 5619,
-              "on_time_pct": 61.7,
+              "readings_in_gate": 5668,
+              "on_time_pct": 61.8,
               "median_delay_s": 39,
               "routes": [
                 [
                   "m1",
-                  742
+                  775
                 ],
                 [
                   "1",
@@ -360658,7 +360658,7 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 68,
-              "readings_in_gate": 4268,
+              "readings_in_gate": 4274,
               "on_time_pct": 55.0,
               "median_delay_s": 86,
               "routes": [
@@ -360701,13 +360701,13 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 41,
-              "readings_in_gate": 2923,
+              "readings_in_gate": 2960,
               "on_time_pct": 56.6,
-              "median_delay_s": 40,
+              "median_delay_s": 38,
               "routes": [
                 [
                   "1",
-                  469
+                  494
                 ],
                 [
                   "T1",
@@ -360715,7 +360715,7 @@
                 ],
                 [
                   "70",
-                  295
+                  298
                 ],
                 [
                   "Y2",
@@ -360744,13 +360744,13 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 18,
-              "readings_in_gate": 1194,
-              "on_time_pct": 66.6,
-              "median_delay_s": 52,
+              "readings_in_gate": 1230,
+              "on_time_pct": 66.7,
+              "median_delay_s": 54,
               "routes": [
                 [
                   "m1",
-                  736
+                  772
                 ],
                 [
                   "m2",
@@ -360814,9 +360814,9 @@
               "electric": true,
               "fuel": "electric",
               "vehicles": 13,
-              "readings_in_gate": 988,
-              "on_time_pct": 54.0,
-              "median_delay_s": 98,
+              "readings_in_gate": 993,
+              "on_time_pct": 54.3,
+              "median_delay_s": 100,
               "routes": [
                 [
                   "8",
@@ -360824,7 +360824,7 @@
                 ],
                 [
                   "A3",
-                  266
+                  271
                 ],
                 [
                   "36",
@@ -363252,7 +363252,7 @@
               "electric": true,
               "fuel": "electric",
               "vehicles": 121,
-              "readings_in_gate": 7757,
+              "readings_in_gate": 7808,
               "on_time_pct": 55.7,
               "median_delay_s": 30,
               "routes": [
@@ -363262,11 +363262,11 @@
                 ],
                 [
                   "76",
-                  1020
+                  1047
                 ],
                 [
                   "75",
-                  997
+                  1021
                 ],
                 [
                   "74",
@@ -363295,13 +363295,13 @@
               "electric": false,
               "fuel": "gas",
               "vehicles": 83,
-              "readings_in_gate": 5619,
-              "on_time_pct": 61.7,
+              "readings_in_gate": 5668,
+              "on_time_pct": 61.8,
               "median_delay_s": 39,
               "routes": [
                 [
                   "m1",
-                  742
+                  775
                 ],
                 [
                   "1",
@@ -363338,7 +363338,7 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 68,
-              "readings_in_gate": 4268,
+              "readings_in_gate": 4274,
               "on_time_pct": 55.0,
               "median_delay_s": 86,
               "routes": [
@@ -363381,13 +363381,13 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 41,
-              "readings_in_gate": 2923,
+              "readings_in_gate": 2960,
               "on_time_pct": 56.6,
-              "median_delay_s": 40,
+              "median_delay_s": 38,
               "routes": [
                 [
                   "1",
-                  469
+                  494
                 ],
                 [
                   "T1",
@@ -363395,7 +363395,7 @@
                 ],
                 [
                   "70",
-                  295
+                  298
                 ],
                 [
                   "Y2",
@@ -363424,13 +363424,13 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 18,
-              "readings_in_gate": 1194,
-              "on_time_pct": 66.6,
-              "median_delay_s": 52,
+              "readings_in_gate": 1230,
+              "on_time_pct": 66.7,
+              "median_delay_s": 54,
               "routes": [
                 [
                   "m1",
-                  736
+                  772
                 ],
                 [
                   "m2",
@@ -363494,9 +363494,9 @@
               "electric": true,
               "fuel": "electric",
               "vehicles": 13,
-              "readings_in_gate": 988,
-              "on_time_pct": 54.0,
-              "median_delay_s": 98,
+              "readings_in_gate": 993,
+              "on_time_pct": 54.3,
+              "median_delay_s": 100,
               "routes": [
                 [
                   "8",
@@ -363504,7 +363504,7 @@
                 ],
                 [
                   "A3",
-                  266
+                  271
                 ],
                 [
                   "36",
