@@ -26,7 +26,7 @@
   ],
   "target_pct": 95,
   "on_time_band": "1 minute early to 5 min 59s late (DfT statistical definition)",
-  "generated_at": "2026-07-26T02:10:53.328215+00:00",
+  "generated_at": "2026-07-26T18:15:41.683233+00:00",
   "days": [
     {
       "service_date": "20260602",
@@ -373185,29 +373185,29 @@
         "ALL": {
           "overall": {
             "on_time_pct": 59.3,
-            "mean_delay_s": 79,
+            "mean_delay_s": 78,
             "median_delay_s": 30,
-            "readings_in_gate": 25273,
-            "readings_total": 25503,
+            "readings_in_gate": 25333,
+            "readings_total": 25563,
             "excluded_distance": 230,
             "median_gate_dist_m": 11,
             "expected_trips": 5459,
-            "observed_trips": 4782,
-            "coverage_pct": 87.6
+            "observed_trips": 4786,
+            "coverage_pct": 87.7
           },
           "routes": [
             {
               "route": "m1",
-              "on_time_pct": 75.4,
-              "mean_delay_s": 79,
-              "median_delay_s": 67,
-              "readings_in_gate": 1216,
-              "on_time": 917,
-              "early": 230,
+              "on_time_pct": 74.3,
+              "mean_delay_s": 72,
+              "median_delay_s": 63,
+              "readings_in_gate": 1269,
+              "on_time": 943,
+              "early": 257,
               "late": 69,
               "expected_trips": 152,
-              "observed_trips": 143,
-              "coverage_pct": 94.1,
+              "observed_trips": 147,
+              "coverage_pct": 96.7,
               "frequent": true
             },
             {
@@ -373463,6 +373463,20 @@
               "frequent": true
             },
             {
+              "route": "A3",
+              "on_time_pct": 57.1,
+              "mean_delay_s": 127,
+              "median_delay_s": 41,
+              "readings_in_gate": 420,
+              "on_time": 240,
+              "early": 114,
+              "late": 66,
+              "expected_trips": 72,
+              "observed_trips": 72,
+              "coverage_pct": 100.0,
+              "frequent": false
+            },
+            {
               "route": "42",
               "on_time_pct": 55.5,
               "mean_delay_s": 303,
@@ -373474,20 +373488,6 @@
               "expected_trips": 66,
               "observed_trips": 65,
               "coverage_pct": 98.5,
-              "frequent": false
-            },
-            {
-              "route": "A3",
-              "on_time_pct": 57.1,
-              "mean_delay_s": 129,
-              "median_delay_s": 43,
-              "readings_in_gate": 415,
-              "on_time": 237,
-              "early": 112,
-              "late": 66,
-              "expected_trips": 72,
-              "observed_trips": 72,
-              "coverage_pct": 100.0,
               "frequent": false
             },
             {
@@ -373506,11 +373506,11 @@
             },
             {
               "route": "70",
-              "on_time_pct": 62.8,
-              "mean_delay_s": -39,
+              "on_time_pct": 63.0,
+              "mean_delay_s": -38,
               "median_delay_s": -14,
-              "readings_in_gate": 395,
-              "on_time": 248,
+              "readings_in_gate": 397,
+              "on_time": 250,
               "early": 140,
               "late": 7,
               "expected_trips": 90,
@@ -374615,10 +374615,10 @@
             "area": [
               {
                 "key": "Bristol",
-                "on_time_pct": 62.6,
-                "readings_in_gate": 17508,
-                "median_delay_s": 37,
-                "mean_delay_s": 80
+                "on_time_pct": 62.5,
+                "readings_in_gate": 17564,
+                "median_delay_s": 36,
+                "mean_delay_s": 79
               },
               {
                 "key": "Bath and North East Somerset",
@@ -374630,8 +374630,8 @@
               {
                 "key": "North Somerset",
                 "on_time_pct": 57.2,
-                "readings_in_gate": 2182,
-                "median_delay_s": 75,
+                "readings_in_gate": 2186,
+                "median_delay_s": 74,
                 "mean_delay_s": 165
               },
               {
@@ -374653,8 +374653,8 @@
               {
                 "key": "Central",
                 "on_time_pct": 54.6,
-                "readings_in_gate": 3861,
-                "median_delay_s": 0,
+                "readings_in_gate": 3873,
+                "median_delay_s": 1,
                 "mean_delay_s": 18
               },
               {
@@ -374666,24 +374666,24 @@
               },
               {
                 "key": "Southville",
-                "on_time_pct": 71.2,
-                "readings_in_gate": 757,
+                "on_time_pct": 71.0,
+                "readings_in_gate": 763,
                 "median_delay_s": 43,
-                "mean_delay_s": 153
+                "mean_delay_s": 151
               },
               {
                 "key": "Filwood",
-                "on_time_pct": 74.0,
-                "readings_in_gate": 741,
-                "median_delay_s": 55,
-                "mean_delay_s": 71
+                "on_time_pct": 73.9,
+                "readings_in_gate": 751,
+                "median_delay_s": 56,
+                "mean_delay_s": 70
               },
               {
                 "key": "Charlton & Cribbs",
-                "on_time_pct": 52.5,
-                "readings_in_gate": 688,
+                "on_time_pct": 52.2,
+                "readings_in_gate": 693,
                 "median_delay_s": -8,
-                "mean_delay_s": 25
+                "mean_delay_s": 23
               },
               {
                 "key": "Lawrence Hill",
@@ -374694,10 +374694,10 @@
               },
               {
                 "key": "Hengrove and Whitchurch Park",
-                "on_time_pct": 68.7,
-                "readings_in_gate": 527,
+                "on_time_pct": 68.5,
+                "readings_in_gate": 533,
                 "median_delay_s": 35,
-                "mean_delay_s": 69
+                "mean_delay_s": 67
               },
               {
                 "key": "Newbridge",
@@ -374708,24 +374708,24 @@
               },
               {
                 "key": "Bedminster",
-                "on_time_pct": 70.9,
-                "readings_in_gate": 464,
-                "median_delay_s": 21,
-                "mean_delay_s": 24
+                "on_time_pct": 70.4,
+                "readings_in_gate": 467,
+                "median_delay_s": 20,
+                "mean_delay_s": 22
               },
               {
                 "key": "Stoke Park & Cheswick",
-                "on_time_pct": 66.7,
-                "readings_in_gate": 454,
-                "median_delay_s": 58,
-                "mean_delay_s": 39
+                "on_time_pct": 66.2,
+                "readings_in_gate": 459,
+                "median_delay_s": 54,
+                "mean_delay_s": 38
               },
               {
                 "key": "Weston-super-Mare Central",
-                "on_time_pct": 43.1,
-                "readings_in_gate": 411,
+                "on_time_pct": 43.0,
+                "readings_in_gate": 412,
                 "median_delay_s": -4,
-                "mean_delay_s": 96
+                "mean_delay_s": 95
               },
               {
                 "key": "Frome Vale",
@@ -374793,16 +374793,16 @@
               {
                 "key": "Lockleaze",
                 "on_time_pct": 76.0,
-                "readings_in_gate": 312,
+                "readings_in_gate": 313,
                 "median_delay_s": 52,
-                "mean_delay_s": 76
+                "mean_delay_s": 77
               },
               {
                 "key": "Weston-super-Mare North Worle",
-                "on_time_pct": 64.0,
-                "readings_in_gate": 311,
-                "median_delay_s": 86,
-                "mean_delay_s": 148
+                "on_time_pct": 64.1,
+                "readings_in_gate": 312,
+                "median_delay_s": 84,
+                "mean_delay_s": 147
               },
               {
                 "key": "Easton",
@@ -374876,10 +374876,10 @@
               },
               {
                 "key": "Wrington",
-                "on_time_pct": 48.6,
-                "readings_in_gate": 222,
-                "median_delay_s": 12,
-                "mean_delay_s": 150
+                "on_time_pct": 48.9,
+                "readings_in_gate": 223,
+                "median_delay_s": 13,
+                "mean_delay_s": 149
               },
               {
                 "key": "Bitton & Oldland Common",
@@ -374896,18 +374896,18 @@
                 "mean_delay_s": 65
               },
               {
+                "key": "Bradley Stoke North",
+                "on_time_pct": 66.2,
+                "readings_in_gate": 207,
+                "median_delay_s": 34,
+                "mean_delay_s": -6
+              },
+              {
                 "key": "Westbury-on-Trym and Henleaze",
                 "on_time_pct": 67.0,
                 "readings_in_gate": 206,
                 "median_delay_s": 95,
                 "mean_delay_s": 166
-              },
-              {
-                "key": "Bradley Stoke North",
-                "on_time_pct": 66.7,
-                "readings_in_gate": 201,
-                "median_delay_s": 40,
-                "mean_delay_s": -4
               },
               {
                 "key": "Weston-super-Mare Uphill",
@@ -374974,10 +374974,10 @@
               },
               {
                 "key": "Congresbury & Puxton",
-                "on_time_pct": 63.2,
-                "readings_in_gate": 174,
-                "median_delay_s": 93,
-                "mean_delay_s": 219
+                "on_time_pct": 63.4,
+                "readings_in_gate": 175,
+                "median_delay_s": 92,
+                "mean_delay_s": 218
               },
               {
                 "key": "Saltford",
@@ -375156,10 +375156,10 @@
               },
               {
                 "key": "Weston-super-Mare South Worle",
-                "on_time_pct": 61.2,
-                "readings_in_gate": 85,
-                "median_delay_s": 82,
-                "mean_delay_s": 210
+                "on_time_pct": 60.5,
+                "readings_in_gate": 86,
+                "median_delay_s": 78,
+                "mean_delay_s": 207
               },
               {
                 "key": "Weston-super-Mare Winterstoke",
@@ -375169,18 +375169,18 @@
                 "mean_delay_s": 202
               },
               {
+                "key": "Bishopston and Ashley Down",
+                "on_time_pct": 86.7,
+                "readings_in_gate": 83,
+                "median_delay_s": 19,
+                "mean_delay_s": 41
+              },
+              {
                 "key": "Westmoreland",
                 "on_time_pct": 56.6,
                 "readings_in_gate": 83,
                 "median_delay_s": -28,
                 "mean_delay_s": 33
-              },
-              {
-                "key": "Bishopston and Ashley Down",
-                "on_time_pct": 86.6,
-                "readings_in_gate": 82,
-                "median_delay_s": 20,
-                "mean_delay_s": 42
               },
               {
                 "key": "New Cheltenham",
@@ -375478,13 +375478,13 @@
               "electric": false,
               "fuel": "gas",
               "vehicles": 81,
-              "readings_in_gate": 5046,
+              "readings_in_gate": 5084,
               "on_time_pct": 64.9,
-              "median_delay_s": 45,
+              "median_delay_s": 44,
               "routes": [
                 [
                   "m1",
-                  825
+                  863
                 ],
                 [
                   "44",
@@ -375564,7 +375564,7 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 35,
-              "readings_in_gate": 2440,
+              "readings_in_gate": 2442,
               "on_time_pct": 61.3,
               "median_delay_s": 32,
               "routes": [
@@ -375582,7 +375582,7 @@
                 ],
                 [
                   "70",
-                  199
+                  201
                 ],
                 [
                   "X39",
@@ -375650,13 +375650,13 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 16,
-              "readings_in_gate": 1034,
-              "on_time_pct": 65.6,
-              "median_delay_s": 59,
+              "readings_in_gate": 1049,
+              "on_time_pct": 65.2,
+              "median_delay_s": 56,
               "routes": [
                 [
                   "m1",
-                  391
+                  406
                 ],
                 [
                   "m2",
@@ -375693,7 +375693,7 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 19,
-              "readings_in_gate": 820,
+              "readings_in_gate": 825,
               "on_time_pct": 54.9,
               "median_delay_s": -2,
               "routes": [
@@ -375703,7 +375703,7 @@
                 ],
                 [
                   "A3",
-                  193
+                  198
                 ],
                 [
                   "D1",
@@ -376020,29 +376020,29 @@
         "FBRI": {
           "overall": {
             "on_time_pct": 59.3,
-            "mean_delay_s": 77,
+            "mean_delay_s": 76,
             "median_delay_s": 29,
-            "readings_in_gate": 24676,
-            "readings_total": 24893,
+            "readings_in_gate": 24736,
+            "readings_total": 24953,
             "excluded_distance": 217,
             "median_gate_dist_m": 11,
             "expected_trips": 5315,
-            "observed_trips": 4678,
-            "coverage_pct": 88.0
+            "observed_trips": 4682,
+            "coverage_pct": 88.1
           },
           "routes": [
             {
               "route": "m1",
-              "on_time_pct": 75.4,
-              "mean_delay_s": 79,
-              "median_delay_s": 67,
-              "readings_in_gate": 1216,
-              "on_time": 917,
-              "early": 230,
+              "on_time_pct": 74.3,
+              "mean_delay_s": 72,
+              "median_delay_s": 63,
+              "readings_in_gate": 1269,
+              "on_time": 943,
+              "early": 257,
               "late": 69,
               "expected_trips": 152,
-              "observed_trips": 143,
-              "coverage_pct": 94.1,
+              "observed_trips": 147,
+              "coverage_pct": 96.7,
               "frequent": true
             },
             {
@@ -376298,6 +376298,20 @@
               "frequent": true
             },
             {
+              "route": "A3",
+              "on_time_pct": 57.1,
+              "mean_delay_s": 127,
+              "median_delay_s": 41,
+              "readings_in_gate": 420,
+              "on_time": 240,
+              "early": 114,
+              "late": 66,
+              "expected_trips": 72,
+              "observed_trips": 72,
+              "coverage_pct": 100.0,
+              "frequent": false
+            },
+            {
               "route": "42",
               "on_time_pct": 55.5,
               "mean_delay_s": 303,
@@ -376309,20 +376323,6 @@
               "expected_trips": 66,
               "observed_trips": 65,
               "coverage_pct": 98.5,
-              "frequent": false
-            },
-            {
-              "route": "A3",
-              "on_time_pct": 57.1,
-              "mean_delay_s": 129,
-              "median_delay_s": 43,
-              "readings_in_gate": 415,
-              "on_time": 237,
-              "early": 112,
-              "late": 66,
-              "expected_trips": 72,
-              "observed_trips": 72,
-              "coverage_pct": 100.0,
               "frequent": false
             },
             {
@@ -376341,11 +376341,11 @@
             },
             {
               "route": "70",
-              "on_time_pct": 62.8,
-              "mean_delay_s": -39,
+              "on_time_pct": 63.0,
+              "mean_delay_s": -38,
               "median_delay_s": -14,
-              "readings_in_gate": 395,
-              "on_time": 248,
+              "readings_in_gate": 397,
+              "on_time": 250,
               "early": 140,
               "late": 7,
               "expected_trips": 90,
@@ -377325,9 +377325,9 @@
               {
                 "key": "Bristol",
                 "on_time_pct": 62.6,
-                "readings_in_gate": 17225,
-                "median_delay_s": 37,
-                "mean_delay_s": 79
+                "readings_in_gate": 17281,
+                "median_delay_s": 36,
+                "mean_delay_s": 78
               },
               {
                 "key": "Bath and North East Somerset",
@@ -377339,8 +377339,8 @@
               {
                 "key": "North Somerset",
                 "on_time_pct": 57.0,
-                "readings_in_gate": 2150,
-                "median_delay_s": 75,
+                "readings_in_gate": 2154,
+                "median_delay_s": 74,
                 "mean_delay_s": 164
               },
               {
@@ -377362,8 +377362,8 @@
               {
                 "key": "Central",
                 "on_time_pct": 54.6,
-                "readings_in_gate": 3861,
-                "median_delay_s": 0,
+                "readings_in_gate": 3873,
+                "median_delay_s": 1,
                 "mean_delay_s": 18
               },
               {
@@ -377375,24 +377375,24 @@
               },
               {
                 "key": "Southville",
-                "on_time_pct": 71.2,
-                "readings_in_gate": 757,
+                "on_time_pct": 71.0,
+                "readings_in_gate": 763,
                 "median_delay_s": 43,
-                "mean_delay_s": 153
+                "mean_delay_s": 151
               },
               {
                 "key": "Filwood",
-                "on_time_pct": 74.0,
-                "readings_in_gate": 741,
-                "median_delay_s": 55,
-                "mean_delay_s": 71
+                "on_time_pct": 73.9,
+                "readings_in_gate": 751,
+                "median_delay_s": 56,
+                "mean_delay_s": 70
               },
               {
                 "key": "Charlton & Cribbs",
-                "on_time_pct": 51.8,
-                "readings_in_gate": 676,
-                "median_delay_s": -10,
-                "mean_delay_s": 23
+                "on_time_pct": 51.5,
+                "readings_in_gate": 681,
+                "median_delay_s": -11,
+                "mean_delay_s": 21
               },
               {
                 "key": "Lawrence Hill",
@@ -377403,24 +377403,24 @@
               },
               {
                 "key": "Hengrove and Whitchurch Park",
-                "on_time_pct": 72.2,
-                "readings_in_gate": 475,
+                "on_time_pct": 71.9,
+                "readings_in_gate": 481,
                 "median_delay_s": 33,
-                "mean_delay_s": 50
+                "mean_delay_s": 48
               },
               {
                 "key": "Bedminster",
-                "on_time_pct": 70.9,
-                "readings_in_gate": 464,
-                "median_delay_s": 21,
-                "mean_delay_s": 24
+                "on_time_pct": 70.4,
+                "readings_in_gate": 467,
+                "median_delay_s": 20,
+                "mean_delay_s": 22
               },
               {
                 "key": "Stoke Park & Cheswick",
-                "on_time_pct": 66.7,
-                "readings_in_gate": 454,
-                "median_delay_s": 58,
-                "mean_delay_s": 39
+                "on_time_pct": 66.2,
+                "readings_in_gate": 459,
+                "median_delay_s": 54,
+                "mean_delay_s": 38
               },
               {
                 "key": "Newbridge",
@@ -377431,10 +377431,10 @@
               },
               {
                 "key": "Weston-super-Mare Central",
-                "on_time_pct": 43.1,
-                "readings_in_gate": 411,
+                "on_time_pct": 43.0,
+                "readings_in_gate": 412,
                 "median_delay_s": -4,
-                "mean_delay_s": 96
+                "mean_delay_s": 95
               },
               {
                 "key": "Frome Vale",
@@ -377502,16 +377502,16 @@
               {
                 "key": "Lockleaze",
                 "on_time_pct": 76.0,
-                "readings_in_gate": 312,
+                "readings_in_gate": 313,
                 "median_delay_s": 52,
-                "mean_delay_s": 76
+                "mean_delay_s": 77
               },
               {
                 "key": "Weston-super-Mare North Worle",
-                "on_time_pct": 64.0,
-                "readings_in_gate": 311,
-                "median_delay_s": 86,
-                "mean_delay_s": 148
+                "on_time_pct": 64.1,
+                "readings_in_gate": 312,
+                "median_delay_s": 84,
+                "mean_delay_s": 147
               },
               {
                 "key": "Easton",
@@ -377564,10 +377564,10 @@
               },
               {
                 "key": "Wrington",
-                "on_time_pct": 48.6,
-                "readings_in_gate": 222,
-                "median_delay_s": 12,
-                "mean_delay_s": 150
+                "on_time_pct": 48.9,
+                "readings_in_gate": 223,
+                "median_delay_s": 13,
+                "mean_delay_s": 149
               },
               {
                 "key": "Southdown",
@@ -377598,18 +377598,18 @@
                 "mean_delay_s": 99
               },
               {
+                "key": "Bradley Stoke North",
+                "on_time_pct": 66.2,
+                "readings_in_gate": 207,
+                "median_delay_s": 34,
+                "mean_delay_s": -6
+              },
+              {
                 "key": "Westbury-on-Trym and Henleaze",
                 "on_time_pct": 67.0,
                 "readings_in_gate": 206,
                 "median_delay_s": 95,
                 "mean_delay_s": 166
-              },
-              {
-                "key": "Bradley Stoke North",
-                "on_time_pct": 66.7,
-                "readings_in_gate": 201,
-                "median_delay_s": 40,
-                "mean_delay_s": -4
               },
               {
                 "key": "Weston-super-Mare Uphill",
@@ -377676,10 +377676,10 @@
               },
               {
                 "key": "Congresbury & Puxton",
-                "on_time_pct": 63.2,
-                "readings_in_gate": 174,
-                "median_delay_s": 93,
-                "mean_delay_s": 219
+                "on_time_pct": 63.4,
+                "readings_in_gate": 175,
+                "median_delay_s": 92,
+                "mean_delay_s": 218
               },
               {
                 "key": "Saltford",
@@ -377858,10 +377858,10 @@
               },
               {
                 "key": "Weston-super-Mare South Worle",
-                "on_time_pct": 61.2,
-                "readings_in_gate": 85,
-                "median_delay_s": 82,
-                "mean_delay_s": 210
+                "on_time_pct": 60.5,
+                "readings_in_gate": 86,
+                "median_delay_s": 78,
+                "mean_delay_s": 207
               },
               {
                 "key": "Weston-super-Mare Winterstoke",
@@ -377871,18 +377871,18 @@
                 "mean_delay_s": 202
               },
               {
+                "key": "Bishopston and Ashley Down",
+                "on_time_pct": 86.7,
+                "readings_in_gate": 83,
+                "median_delay_s": 19,
+                "mean_delay_s": 41
+              },
+              {
                 "key": "Westmoreland",
                 "on_time_pct": 56.6,
                 "readings_in_gate": 83,
                 "median_delay_s": -28,
                 "mean_delay_s": 33
-              },
-              {
-                "key": "Bishopston and Ashley Down",
-                "on_time_pct": 86.6,
-                "readings_in_gate": 82,
-                "median_delay_s": 20,
-                "mean_delay_s": 42
               },
               {
                 "key": "New Cheltenham",
@@ -378159,13 +378159,13 @@
               "electric": false,
               "fuel": "gas",
               "vehicles": 81,
-              "readings_in_gate": 5046,
+              "readings_in_gate": 5084,
               "on_time_pct": 64.9,
-              "median_delay_s": 45,
+              "median_delay_s": 44,
               "routes": [
                 [
                   "m1",
-                  825
+                  863
                 ],
                 [
                   "44",
@@ -378245,7 +378245,7 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 35,
-              "readings_in_gate": 2440,
+              "readings_in_gate": 2442,
               "on_time_pct": 61.3,
               "median_delay_s": 32,
               "routes": [
@@ -378263,7 +378263,7 @@
                 ],
                 [
                   "70",
-                  199
+                  201
                 ],
                 [
                   "X39",
@@ -378331,13 +378331,13 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 16,
-              "readings_in_gate": 1034,
-              "on_time_pct": 65.6,
-              "median_delay_s": 59,
+              "readings_in_gate": 1049,
+              "on_time_pct": 65.2,
+              "median_delay_s": 56,
               "routes": [
                 [
                   "m1",
-                  391
+                  406
                 ],
                 [
                   "m2",
@@ -378374,9 +378374,9 @@
               "electric": false,
               "fuel": "diesel",
               "vehicles": 18,
-              "readings_in_gate": 789,
+              "readings_in_gate": 794,
               "on_time_pct": 53.9,
-              "median_delay_s": -5,
+              "median_delay_s": -4,
               "routes": [
                 [
                   "5",
@@ -378384,7 +378384,7 @@
                 ],
                 [
                   "A3",
-                  193
+                  198
                 ],
                 [
                   "D1",
@@ -379253,29 +379253,29 @@
       },
       "overall": {
         "on_time_pct": 59.3,
-        "mean_delay_s": 77,
+        "mean_delay_s": 76,
         "median_delay_s": 29,
-        "readings_in_gate": 24676,
-        "readings_total": 24893,
+        "readings_in_gate": 24736,
+        "readings_total": 24953,
         "excluded_distance": 217,
         "median_gate_dist_m": 11,
         "expected_trips": 5315,
-        "observed_trips": 4678,
-        "coverage_pct": 88.0
+        "observed_trips": 4682,
+        "coverage_pct": 88.1
       },
       "routes": [
         {
           "route": "m1",
-          "on_time_pct": 75.4,
-          "mean_delay_s": 79,
-          "median_delay_s": 67,
-          "readings_in_gate": 1216,
-          "on_time": 917,
-          "early": 230,
+          "on_time_pct": 74.3,
+          "mean_delay_s": 72,
+          "median_delay_s": 63,
+          "readings_in_gate": 1269,
+          "on_time": 943,
+          "early": 257,
           "late": 69,
           "expected_trips": 152,
-          "observed_trips": 143,
-          "coverage_pct": 94.1,
+          "observed_trips": 147,
+          "coverage_pct": 96.7,
           "frequent": true
         },
         {
@@ -379531,6 +379531,20 @@
           "frequent": true
         },
         {
+          "route": "A3",
+          "on_time_pct": 57.1,
+          "mean_delay_s": 127,
+          "median_delay_s": 41,
+          "readings_in_gate": 420,
+          "on_time": 240,
+          "early": 114,
+          "late": 66,
+          "expected_trips": 72,
+          "observed_trips": 72,
+          "coverage_pct": 100.0,
+          "frequent": false
+        },
+        {
           "route": "42",
           "on_time_pct": 55.5,
           "mean_delay_s": 303,
@@ -379542,20 +379556,6 @@
           "expected_trips": 66,
           "observed_trips": 65,
           "coverage_pct": 98.5,
-          "frequent": false
-        },
-        {
-          "route": "A3",
-          "on_time_pct": 57.1,
-          "mean_delay_s": 129,
-          "median_delay_s": 43,
-          "readings_in_gate": 415,
-          "on_time": 237,
-          "early": 112,
-          "late": 66,
-          "expected_trips": 72,
-          "observed_trips": 72,
-          "coverage_pct": 100.0,
           "frequent": false
         },
         {
@@ -379574,11 +379574,11 @@
         },
         {
           "route": "70",
-          "on_time_pct": 62.8,
-          "mean_delay_s": -39,
+          "on_time_pct": 63.0,
+          "mean_delay_s": -38,
           "median_delay_s": -14,
-          "readings_in_gate": 395,
-          "on_time": 248,
+          "readings_in_gate": 397,
+          "on_time": 250,
           "early": 140,
           "late": 7,
           "expected_trips": 90,
