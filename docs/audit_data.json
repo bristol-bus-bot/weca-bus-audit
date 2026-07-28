@@ -26,7 +26,7 @@
   ],
   "target_pct": 95,
   "on_time_band": "1 minute early to 5 min 59s late (DfT statistical definition)",
-  "generated_at": "2026-07-28T17:47:07.069779+00:00",
+  "generated_at": "2026-07-28T17:57:43.035570+00:00",
   "days": [
     {
       "service_date": "20260602",
