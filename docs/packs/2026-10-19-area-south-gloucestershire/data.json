@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-23T17:10:50+00:00",
+  "slug": "2026-10-19-area-south-gloucestershire",
+  "public_url": "https://bristol-bus-bot.github.io/weca-bus-audit/packs/2026-10-19-area-south-gloucestershire/",
+  "committee_date": "2026-10-19",
+  "months": 2,
+  "scope": {
+    "kind": "area",
+    "values": [
+      "South Gloucestershire"
+    ],
+    "display": "South Gloucestershire"
+  },
+  "operator": {
+    "code": "ALL",
+    "name": "WECA network"
+  },
+  "latest_audit_date": "2026-08-22",
+  "period": {
+    "start": "2026-06-01",
+    "end": "2026-07-31"
+  },
+  "previous_period": {
+    "start": "2026-04-01",
+    "end": "2026-05-31"
+  },
+  "target": {
+    "current_target_pct": 87,
+    "current_target_financial_year": "2026-27",
+    "current_target_starts_on": "2026-04-01",
+    "current_target_ends_on": "2027-03-31",
+    "current_target_source": "West of England Enhanced Partnership Scheme V7.02 (July 2025), Appendix 5, Table 9",
+    "current_target_source_short": "EP Scheme V7.02, Appendix 5, Table 9",
+    "current_target_source_url": "https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/07/West-of-England-EP-Scheme-V7.0-July-2025.pdf",
+    "punctuality_target_schedule": [
+      {
+        "financial_year": "2022-23",
+        "starts_on": "2022-04-01",
+        "ends_on": "2023-03-31",
+        "target_pct": 81
+      },
+      {
+        "financial_year": "2023-24",
+        "starts_on": "2023-04-01",
+        "ends_on": "2024-03-31",
+        "target_pct": 82
+      },
+      {
+        "financial_year": "2024-25",
+        "starts_on": "2024-04-01",
+        "ends_on": "2025-03-31",
+        "target_pct": 83
+      },
+      {
+        "financial_year": "2025-26",
+        "starts_on": "2025-04-01",
+        "ends_on": "2026-03-31",
+        "target_pct": 85
+      },
+      {
+        "financial_year": "2026-27",
+        "starts_on": "2026-04-01",
+        "ends_on": "2027-03-31",
+        "target_pct": 87
+      }
+    ],
+    "period_target_consistent": true,
+    "period_start_target_pct": 87,
+    "period_start_target_financial_year": "2026-27"
+  },
+  "headline": {
+    "service_days": 60,
+    "readings": 20296,
+    "on_time": 11653,
+    "not_on_time": 8643,
+    "on_time_pct": 57.4,
+    "start": "2026-06-01",
+    "end": "2026-07-31",
+    "first_date": "2026-06-02",
+    "last_date": "2026-07-31",
+    "partial_period": false,
+    "available_audit_days": 60,
+    "day_share_pct": 100.0
+  },
+  "previous": {
+    "service_days": 0,
+    "readings": 0,
+    "on_time": 0,
+    "not_on_time": 0,
+    "on_time_pct": null,
+    "start": "2026-04-01",
+    "end": "2026-05-31",
+    "first_date": null,
+    "last_date": null,
+    "partial_period": true,
+    "available_audit_days": 0,
+    "day_share_pct": null
+  },
+  "change_from_previous_pct_points": null,
+  "change_unavailable_reason": "no comparable earlier readings",
+  "comparability_breaks": [
+    {
+      "date": "2026-07-13",
+      "reason": "the replacement collector changed timetable matching and stale-position handling"
+    }
+  ],
+  "monthly": [
+    {
+      "service_days": 29,
+      "readings": 9269,
+      "on_time": 5038,
+      "not_on_time": 4231,
+      "on_time_pct": 54.4,
+      "month": "June 2026",
+      "month_key": "2026-06"
+    },
+    {
+      "service_days": 31,
+      "readings": 11027,
+      "on_time": 6615,
+      "not_on_time": 4412,
+      "on_time_pct": 60.0,
+      "month": "July 2026",
+      "month_key": "2026-07"
+    }
+  ],
+  "routes": {
+    "available": true,
+    "reason": null,
+    "complete_period": true,
+    "evidence_days": 60,
+    "headline_days": 60,
+    "day_share_pct": 100.0,
+    "minimum_readings": 200,
+    "rows": [
+      {
+        "operator": "FBRI",
+        "operator_name": "First Bristol",
+        "route": "T1",
+        "display": "T1 (First Bristol)",
+        "service_days": 60,
+        "readings": 5724,
+        "on_time": 2949,
+        "on_time_pct": 51.5,
+        "thin_sample": false,
+        "first_date": "2026-06-02",
+        "last_date": "2026-07-31",
+        "partial_period": false
+      },
+      {
+        "operator": "FBRI",
+        "operator_name": "First Bristol",
+        "route": "Y6",
+        "display": "Y6 (First Bristol)",
+        "service_days": 30,
+        "readings": 918,
+        "on_time": 484,
+        "on_time_pct": 52.7,
+        "thin_sample": false,
+        "first_date": "2026-07-02",
+        "last_date": "2026-07-31",
+        "partial_period": true
+      },
+      {
+        "operator": "FBRI",
+        "operator_name": "First Bristol",
+        "route": "Y1",
+        "display": "Y1 (First Bristol)",
+        "service_days": 60,
+        "readings": 5191,
+        "on_time": 2936,
+        "on_time_pct": 56.6,
+        "thin_sample": false,
+        "first_date": "2026-06-02",
+        "last_date": "2026-07-31",
+        "partial_period": false
+      },
+      {
+        "operator": "FBRI",
+        "operator_name": "First Bristol",
+        "route": "Y2",
+        "display": "Y2 (First Bristol)",
+        "service_days": 60,
+        "readings": 5663,
+        "on_time": 3223,
+        "on_time_pct": 56.9,
+        "thin_sample": false,
+        "first_date": "2026-06-02",
+        "last_date": "2026-07-31",
+        "partial_period": false
+      },
+      {
+        "operator": "SCGL",
+        "operator_name": "Stagecoach West",
+        "route": "207",
+        "display": "207 (Stagecoach West)",
+        "service_days": 48,
+        "readings": 866,
+        "on_time": 562,
+        "on_time_pct": 64.9,
+        "thin_sample": false,
+        "first_date": "2026-06-05",
+        "last_date": "2026-07-31",
+        "partial_period": false
+      },
+      {
+        "operator": "SCGL",
+        "operator_name": "Stagecoach West",
+        "route": "620",
+        "display": "620 (Stagecoach West)",
+        "service_days": 47,
+        "readings": 756,
+        "on_time": 527,
+        "on_time_pct": 69.7,
+        "thin_sample": false,
+        "first_date": "2026-06-05",
+        "last_date": "2026-07-31",
+        "partial_period": false
+      },
+      {
+        "operator": "SCGL",
+        "operator_name": "Stagecoach West",
+        "route": "60",
+        "display": "60 (Stagecoach West)",
+        "service_days": 45,
+        "readings": 1178,
+        "on_time": 972,
+        "on_time_pct": 82.5,
+        "thin_sample": false,
+        "first_date": "2026-06-04",
+        "last_date": "2026-07-31",
+        "partial_period": false
+      }
+    ]
+  },
+  "frequency": {
+    "available": false,
+    "reason": "withheld because the two periods' calendar context, including school-term or seasonal differences, has not been checked",
+    "changes": []
+  },
+  "questions": [
+    "Only 57.4% of 20,296 timing-point readings in South Gloucestershire were on time during this period, against the 87% area-wide target. What specific action is being taken for passengers in this area?",
+    "First Bristol route T1 was on time for 51.5% of 5,724 local readings. Does WECA's own route-level monitoring show the same problem, and is there an action plan?",
+    "This pack contains 20,296 readings across 60 service days. Will WECA publish its own monthly route-level scheduled and lost-mileage figures so the two sources can be compared?"
+  ],
+  "limitations": [
+    "These are independent estimates from open data, not official figures.",
+    "The preceding-period change is withheld because the audit method changed within the comparison window.",
+    "A reading is an observation at a timetable timing point, not a unique bus journey or passenger.",
+    "Only readings within 150 metres of the timing point are counted; origin readings are excluded.",
+    "Missing tracker observations are not labelled as cancellations.",
+    "Area and ward route tables describe where qualifying readings were observed, not every place a route may serve.",
+    "Registered timetable changes describe what was scheduled, not why it changed or whether each journey ran."
+  ],
+  "sources": {
+    "audit": "https://bristol-bus-bot.github.io/weca-bus-audit/",
+    "methodology": "https://github.com/bristol-bus-bot/weca-bus-audit/blob/main/AUDIT_METHODOLOGY.md",
+    "target": "https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/07/West-of-England-EP-Scheme-V7.0-July-2025.pdf"
+  }
+}
