@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T22:55:56+00:00",
+  "generated_at": "2026-09-07T23:10:37+00:00",
   "slug": "2026-10-19-area-south-gloucestershire",
   "public_url": "https://bristol-bus-bot.github.io/weca-bus-audit/packs/2026-10-19-area-south-gloucestershire/",
   "committee_date": "2026-10-19",
@@ -16,7 +16,7 @@
     "code": "ALL",
     "name": "WECA network"
   },
-  "latest_audit_date": "2026-08-23",
+  "latest_audit_date": "2026-09-06",
   "period": {
     "start": "2026-06-01",
     "end": "2026-07-31"
@@ -70,18 +70,76 @@
     "period_start_target_financial_year": "2026-27"
   },
   "headline": {
-    "service_days": 59,
-    "readings": 20278,
-    "on_time": 11642,
-    "not_on_time": 8636,
-    "on_time_pct": 57.4,
+    "service_days": 57,
+    "readings": 19897,
+    "on_time": 11448,
+    "not_on_time": 8449,
+    "on_time_pct": 57.5,
     "start": "2026-06-01",
     "end": "2026-07-31",
-    "first_date": "2026-06-02",
+    "first_date": "2026-06-04",
     "last_date": "2026-07-31",
     "partial_period": false,
-    "available_audit_days": 59,
-    "day_share_pct": 100.0
+    "available_audit_days": 57,
+    "day_share_pct": 100.0,
+    "qualification": {
+      "version": 1,
+      "status": "indicative",
+      "reasons": [
+        "inconsistent_journey_order",
+        "coverage_unverified"
+      ],
+      "journeys": 11186,
+      "service_days": 57,
+      "range_pct": [
+        55.3,
+        59.8
+      ],
+      "ambiguous_readings": 352
+    }
+  },
+  "operator_composition": {
+    "basis": "eligible_timing_point_readings",
+    "readings": 19897,
+    "operators": [
+      {
+        "code": "FBRI",
+        "name": "First Bristol",
+        "readings": 17097,
+        "share_pct": 85.9
+      },
+      {
+        "code": "SCGL",
+        "name": "Stagecoach West",
+        "readings": 2800,
+        "share_pct": 14.1
+      },
+      {
+        "code": "LEMB",
+        "name": "The Big Lemon",
+        "readings": 0,
+        "share_pct": 0.0
+      },
+      {
+        "code": "ABUS",
+        "name": "Abus",
+        "readings": 0,
+        "share_pct": 0.0
+      },
+      {
+        "code": "CTCO",
+        "name": "CT Coaches",
+        "readings": 0,
+        "share_pct": 0.0
+      },
+      {
+        "code": "TYSW",
+        "name": "Taylors Travel",
+        "readings": 0,
+        "share_pct": 0.0
+      }
+    ],
+    "caveat": "Shares describe captured readings, not market share, passengers or an even survey of the network. Operators and places without observations are not represented."
   },
   "previous": {
     "service_days": 0,
@@ -95,17 +153,39 @@
     "last_date": null,
     "partial_period": true,
     "available_audit_days": 0,
-    "day_share_pct": null
+    "day_share_pct": null,
+    "qualification": {
+      "version": 1,
+      "status": "unavailable",
+      "reasons": [
+        "sample_support_unavailable"
+      ],
+      "journeys": null,
+      "service_days": null,
+      "range_pct": null
+    }
   },
   "change_from_previous_pct_points": null,
   "change_unavailable_reason": "no comparable earlier readings",
   "comparability_breaks": [
     {
       "date": "2026-07-13",
-      "reason": "the replacement collector changed timetable matching and stale-position handling"
+      "reason": "the early-July collector transition has incomplete deployment chronology"
     }
   ],
   "excluded_service_days": [
+    {
+      "service_date": "2026-06-02",
+      "reasons": [
+        "retained_sample_support_unavailable"
+      ]
+    },
+    {
+      "service_date": "2026-06-03",
+      "reasons": [
+        "retained_sample_support_unavailable"
+      ]
+    },
     {
       "service_date": "2026-07-01",
       "reasons": [
@@ -121,11 +201,11 @@
   ],
   "monthly": [
     {
-      "service_days": 29,
-      "readings": 9269,
-      "on_time": 5038,
-      "not_on_time": 4231,
-      "on_time_pct": 54.4,
+      "service_days": 27,
+      "readings": 8888,
+      "on_time": 4844,
+      "not_on_time": 4044,
+      "on_time_pct": 54.5,
       "month": "June 2026",
       "month_key": "2026-06"
     },
@@ -143,8 +223,8 @@
     "available": true,
     "reason": null,
     "complete_period": true,
-    "evidence_days": 59,
-    "headline_days": 59,
+    "evidence_days": 57,
+    "headline_days": 57,
     "day_share_pct": 100.0,
     "minimum_readings": 200,
     "rows": [
@@ -153,14 +233,29 @@
         "operator_name": "First Bristol",
         "route": "T1",
         "display": "T1 (First Bristol)",
-        "service_days": 59,
-        "readings": 5716,
-        "on_time": 2944,
-        "on_time_pct": 51.5,
+        "service_days": 57,
+        "readings": 5581,
+        "on_time": 2869,
+        "on_time_pct": 51.4,
         "thin_sample": false,
-        "first_date": "2026-06-02",
+        "first_date": "2026-06-04",
         "last_date": "2026-07-31",
-        "partial_period": false
+        "partial_period": false,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "inconsistent_journey_order",
+            "coverage_unverified"
+          ],
+          "journeys": 3630,
+          "service_days": 57,
+          "range_pct": [
+            49.0,
+            53.8
+          ],
+          "ambiguous_readings": 6
+        }
       },
       {
         "operator": "FBRI",
@@ -174,35 +269,79 @@
         "thin_sample": false,
         "first_date": "2026-07-02",
         "last_date": "2026-07-31",
-        "partial_period": true
+        "partial_period": true,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "coverage_unverified"
+          ],
+          "journeys": 488,
+          "service_days": 30,
+          "range_pct": [
+            46.4,
+            59.0
+          ],
+          "ambiguous_readings": 0
+        }
       },
       {
         "operator": "FBRI",
         "operator_name": "First Bristol",
         "route": "Y1",
         "display": "Y1 (First Bristol)",
-        "service_days": 59,
-        "readings": 5188,
-        "on_time": 2935,
-        "on_time_pct": 56.6,
+        "service_days": 57,
+        "readings": 5071,
+        "on_time": 2874,
+        "on_time_pct": 56.7,
         "thin_sample": false,
-        "first_date": "2026-06-02",
+        "first_date": "2026-06-04",
         "last_date": "2026-07-31",
-        "partial_period": false
+        "partial_period": false,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "inconsistent_journey_order",
+            "coverage_unverified"
+          ],
+          "journeys": 3074,
+          "service_days": 57,
+          "range_pct": [
+            53.5,
+            60.0
+          ],
+          "ambiguous_readings": 72
+        }
       },
       {
         "operator": "FBRI",
         "operator_name": "First Bristol",
         "route": "Y2",
         "display": "Y2 (First Bristol)",
-        "service_days": 59,
-        "readings": 5656,
-        "on_time": 3218,
-        "on_time_pct": 56.9,
+        "service_days": 57,
+        "readings": 5527,
+        "on_time": 3160,
+        "on_time_pct": 57.2,
         "thin_sample": false,
-        "first_date": "2026-06-02",
+        "first_date": "2026-06-04",
         "last_date": "2026-07-31",
-        "partial_period": false
+        "partial_period": false,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "inconsistent_journey_order",
+            "coverage_unverified"
+          ],
+          "journeys": 2968,
+          "service_days": 57,
+          "range_pct": [
+            53.5,
+            61.4
+          ],
+          "ambiguous_readings": 159
+        }
       },
       {
         "operator": "SCGL",
@@ -216,7 +355,22 @@
         "thin_sample": false,
         "first_date": "2026-06-05",
         "last_date": "2026-07-31",
-        "partial_period": false
+        "partial_period": false,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "inconsistent_journey_order",
+            "coverage_unverified"
+          ],
+          "journeys": 319,
+          "service_days": 48,
+          "range_pct": [
+            48.8,
+            79.1
+          ],
+          "ambiguous_readings": 115
+        }
       },
       {
         "operator": "SCGL",
@@ -230,7 +384,21 @@
         "thin_sample": false,
         "first_date": "2026-06-05",
         "last_date": "2026-07-31",
-        "partial_period": false
+        "partial_period": false,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "coverage_unverified"
+          ],
+          "journeys": 301,
+          "service_days": 47,
+          "range_pct": [
+            61.2,
+            78.2
+          ],
+          "ambiguous_readings": 0
+        }
       },
       {
         "operator": "SCGL",
@@ -244,7 +412,21 @@
         "thin_sample": false,
         "first_date": "2026-06-04",
         "last_date": "2026-07-31",
-        "partial_period": false
+        "partial_period": false,
+        "qualification": {
+          "version": 1,
+          "status": "indicative",
+          "reasons": [
+            "coverage_unverified"
+          ],
+          "journeys": 406,
+          "service_days": 45,
+          "range_pct": [
+            75.4,
+            89.6
+          ],
+          "ambiguous_readings": 0
+        }
       }
     ]
   },
@@ -254,19 +436,21 @@
     "changes": []
   },
   "questions": [
-    "Only 57.4% of 20,278 timing-point readings in South Gloucestershire were on time during this period, against the 87% area-wide target. What specific action is being taken for passengers in this area?",
-    "First Bristol route T1 was on time for 51.5% of 5,716 local readings. Does WECA's own route-level monitoring show the same problem, and is there an action plan?",
-    "This pack contains 20,278 readings across 59 service days. Will WECA publish its own monthly route-level scheduled and lost-mileage figures so the two sources can be compared?"
+    "Only 57.5% of 19,897 timing-point readings in South Gloucestershire were on time during this period, against the 87% area-wide target. What specific action is being taken for passengers in this area?",
+    "First Bristol route T1 was on time for 51.4% of 5,581 local readings. Does WECA's own route-level monitoring show the same problem, and is there an action plan?",
+    "This pack contains 19,897 readings across 57 service days. Will WECA publish its own monthly route-level scheduled and lost-mileage figures so the two sources can be compared?"
   ],
   "limitations": [
     "These are independent estimates from open data, not official figures.",
-    "Known incomplete audit days were excluded from every figure in this pack: 2026-07-01.",
+    "Known incomplete audit days were excluded from every figure in this pack: 2026-06-02, 2026-06-03, 2026-07-01.",
     "The preceding-period change is withheld because the audit method changed within the comparison window.",
     "A reading is an observation at a timetable timing point, not a unique bus journey or passenger.",
     "Only readings within 150 metres of the timing point are counted; origin readings are excluded.",
     "Missing tracker observations are not labelled as cancellations.",
     "Area and ward route tables describe where qualifying readings were observed, not every place a route may serve.",
-    "Registered timetable changes describe what was scheduled, not why it changed or whether each journey ran."
+    "Registered timetable changes describe what was scheduled, not why it changed or whether each journey ran.",
+    "Indicative: 11,186 journeys, 57 days. Sampling/order sensitivity: 55.3-59.8%. Assumes independent journeys; excludes feed bias and other assignment errors.",
+    "Operator shares of this scope and period: First Bristol 85.9%, Stagecoach West 14.1%. Shares describe captured readings, not market share, passengers or an even survey of the network. Operators and places without observations are not represented."
   ],
   "sources": {
     "audit": "https://bristol-bus-bot.github.io/weca-bus-audit/",
