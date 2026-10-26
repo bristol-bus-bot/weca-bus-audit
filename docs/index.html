@@ -24,6 +24,10 @@
     <span class="op-bar-label">Showing</span>
     <div class="op-tabs" id="operator-tabs" role="tablist" aria-label="Bus operator"></div>
   </div>
+  <div class="view-bar" id="view-bar" hidden>
+    <span class="op-bar-label">Period</span>
+    <div class="controls" id="view-controls"></div>
+  </div>
 
   <div class="callout data-note" id="historical-data-note" role="note">
     <strong>Historical data note.</strong> Some days have incomplete or
@@ -92,6 +96,8 @@
     <div class="sec-body" id="routes-panel"><div class="sec-body-inner">
       <p class="audit-muted audit-small">Tiles show observed on-time percentages. Faded tiles have limited precision or unavailable evidence. Tap a tile for its breakdown. A <span class="cell-freq">freq</span> label is a verified schedule proxy checked separately by direction, not an excess-waiting-time result.</p>
       <p class="audit-muted audit-small" id="route-target-note"></p>
+      <div class="network-hours" id="network-hours" aria-live="polite" hidden></div>
+      <div class="network-fit" id="network-fit" hidden></div>
       <div class="controls">
         <span class="audit-faint audit-small">Sort:</span>
         <button type="button" class="ctl active" data-sort="worst" aria-pressed="true">Worst first</button>
