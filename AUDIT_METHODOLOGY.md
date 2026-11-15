@@ -87,10 +87,20 @@ reading would incorrectly describe the layover as an early departure.
 
 ## On-time definition
 
-A departure counts as on time if it is between 1 minute early and 5 minutes 59
+A reading counts as on time if it is between 1 minute early and 5 minutes 59
 seconds late (delay between -60 and +359 seconds). This is the DfT statistical
 "on time" band, chosen because it matches the convention behind the official
-published figures. WECA's latest published Enhanced Partnership Scheme sets an
+published figures.
+
+The last timing point of a journey is treated differently. A bus that reaches
+the end of its journey early has not left anyone behind, and the Senior
+Traffic Commissioner's Statutory Document No. 14 (version 6.0, paragraphs 43
+to 45) checks final destination points only against late arrival: "It is
+acceptable for buses to arrive early at their final destination." So a
+reading at the last timing point that is more than a minute early counts as
+on time. Late is still late: more than 5 minutes 59 seconds late at the last
+stop is late, as anywhere else. The audit page also gives the stricter
+figure, with those early arrivals counted as early, beside the headline. WECA's latest published Enhanced Partnership Scheme sets an
 annual area-wide target schedule in Appendix 5, Table 9:
 
 | Financial year | Area-wide target |
@@ -109,10 +119,31 @@ Bus Service Improvement Plan goal remains 95% by 2030. Both use the same
 1-minute-early to 5-minutes-late definition; neither is an operator-specific
 target for First Bristol alone.
 
-The published schedule currently ends on 31 March 2027. The exporter fails
-clearly for a later service date until a newly published target is deliberately
-added. It does not silently carry 87% into a financial year for which the
-scheme provides no target.
+The published schedule currently ends on 31 March 2027. For a later service
+date the figures are still published, but no target is shown as current: the
+page says no target has been published for that year and names the last one
+for reference only. It does not silently carry 87% into a financial year for
+which the scheme provides no target.
+
+### The six delay bands
+
+Every reading also falls into one of six bands, published for each route,
+each operator and the network ("Show all six bands" under the headline).
+Delay is the reading's time minus the timetable's, in seconds:
+
+| Band | Delay |
+|---|---|
+| More than 5 minutes early | below -300 |
+| 1 to 5 minutes early | -300 to -61 |
+| On time | -60 to +359, or any early arrival at the last stop |
+| 6 to 10 minutes late | +360 to +600 |
+| 10 to 20 minutes late | +601 to +1200 |
+| More than 20 minutes late | above +1200 |
+
+A bus a minute or two ahead has probably arrived and is waiting; one more
+than five minutes ahead is either a real early run or a bad match. The six
+bands always add up to the readings counted, and the on-time band to the
+on-time figure; a day where they don't is not published.
 
 ## Last 28 days (the default view)
 
@@ -342,8 +373,22 @@ page names the routes withheld each day.
 ## Honest limitations
 
 - A bus missing from the feed is not the same as a bus that did not run.
-- Positions are sampled roughly every 30 seconds, so the closest-approach reading
-  is within a few seconds of the truth, not exact.
+- Positions are sampled roughly every 30 seconds, so each reading can be out
+  by up to about half a minute.
+- **A reading is neither an arrival nor a departure.** We keep the single
+  position where the bus was closest to the timing point and compare it with
+  the timetable's departure time. If a bus waits at the stop, that position
+  can come from any moment of the wait, so a bus that arrived early and
+  waited can count as early. The official standard, and the Department for
+  Transport's ABODS tool, judge departure times; this audit does not yet
+  detect the moment a bus leaves.
+- Readings more than 15 minutes early or more than 90 minutes late are
+  dropped as implausible. Over 22 August to 12 November 2026 this made no
+  practical difference: 517 readings sat in the last minute before the early
+  cut-off and 10 before the late one.
+- The 150-metre zone around each timing point does not change the result: a
+  70, 100, 250 or 1,000-metre zone gives the same network figure to within
+  0.1 points.
 - The match is fuzzy, so some trips are unmatched and excluded.
 - We measure at timing points only, which is the official basis, not at every stop.
 - Operators differ in data quality: First's real-time feed is rich, while some
@@ -372,6 +417,20 @@ management problem, and that is where the criticism belongs.
 
 Changes that affect comparability of the published figures are recorded
 here.
+
+**November 2026 - early arrival at the last stop counts as on time.** A
+reading at the last timing point of a journey that is more than a minute
+early used to count as early, and so not on time. It now counts as on time,
+because the official standard checks the final destination only against
+late arrival (see "On-time definition"). Late at the last stop is still
+late. Over 22 August to 12 November 2026 (2,062,303 readings), last-stop
+readings were 17.6% of the total and 32.1% of them were early, against 17.9%
+at other timing points. The network on-time figure for that period is 60.6%
+under the old rule and 66.3% under the new one (First Bristol: 60.5% and
+66.8%). Days from 22 August 2026 were recomputed from the retained raw
+readings, which can identify each journey's last stop from that date.
+Earlier days keep the old rule. The page shows the stricter figure beside
+the headline.
 
 **28 October 2026 - routes sharing a number in different towns are reported
 separately.** First's 1, 2, 3, 4, 5, 6, 7, 8, 20, 41, U1, U1N and U2 each

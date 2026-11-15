@@ -81,12 +81,25 @@ function targetYearLabel() {
     : "current year";
 }
 
+// After WECA's published schedule ends, no target is current: the last one
+// is named for reference and still sets the colours (planning #138).
+function targetPending() {
+  return state.targetStatus === "not_yet_published";
+}
+
+function lastTargetYearLabel() {
+  return (state.lastTargetFinancialYear || "the previous year").replace("-", "–");
+}
+
 function targetReferenceHTML() {
   const source = escapeHTML(state.targetSource || "published WECA target schedule");
   const url = safeHTTPURL(state.targetSourceUrl);
   const sourceHTML = url
     ? `<a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${source}</a>`
     : source;
+  if (targetPending()) {
+    return `area-wide targets: none has been published for <strong>${escapeHTML(targetYearLabel())}</strong> yet, so the last one, <strong>${finiteNumber(state.target)}%</strong> for ${escapeHTML(lastTargetYearLabel())}, is shown for reference (${sourceHTML})`;
+  }
   return `<strong>${finiteNumber(state.target)}%</strong> area-wide target for <strong>${escapeHTML(targetYearLabel())}</strong> (${sourceHTML})`;
 }
 
@@ -96,7 +109,9 @@ function renderTargetContext() {
   const note = `Compared with WECA's ${reference}. The separate long-term goal is ${escapeHTML(longTerm)}.`;
   $("headline-target-note").innerHTML = note;
   // The sections only need the colour key; the full reference is up top.
-  const key = `Green means at or above the ${finiteNumber(state.target)}% target for ${escapeHTML(targetYearLabel())}.`;
+  const key = targetPending()
+    ? `Green means at or above ${finiteNumber(state.target)}%, the last published target (${escapeHTML(lastTargetYearLabel())}).`
+    : `Green means at or above the ${finiteNumber(state.target)}% target for ${escapeHTML(targetYearLabel())}.`;
   ["geo-target-note", "route-target-note"].forEach((id) => {
     const element = $(id);
     if (element) element.innerHTML = key;
@@ -523,6 +538,28 @@ function routeSummary(row, hourly) {
 }
 
 // --- Headline --------------------------------------------------------------------------
+// Early arrival at a trip's last timing point counts as on time, as the
+// official standard allows (planning #131). The stricter figure, counting it
+// as early, sits beside the headline.
+function strictFigure(overall) {
+  const finalEarly = finiteNumber(overall.final_stop_early_on_time);
+  const readings = finiteNumber(overall.readings_in_gate);
+  if (!hasReadings(overall) || finalEarly <= 0 || readings <= 0) return null;
+  return {
+    pct: (100 * (finiteNumber(overall.on_time) - finalEarly)) / readings,
+    finalEarly,
+  };
+}
+
+function renderStrictFigure(overall) {
+  const element = $("h-strict");
+  if (!element) return;
+  const strict = strictFigure(overall);
+  element.hidden = !strict;
+  if (!strict) return;
+  element.textContent = `A bus that reaches the end of its journey early counts as on time, as the official standard allows. Counting those ${Math.round(strict.finalEarly).toLocaleString("en-GB")} readings as early instead, ${strict.pct.toFixed(1)}% were on time.`;
+}
+
 function renderHeadline(opData) {
   const data = state.data;
   const day = state.day;
@@ -538,12 +575,18 @@ function renderHeadline(opData) {
   $("h-pct").textContent = hasReadings(overall) ? `on time (${finiteNumber(pct).toFixed(1)}%)` : "no readings";
   const shortBy = state.target - finiteNumber(pct);
   $("h-lead").textContent = hasReadings(overall)
-    ? `${day.period ? "Over" : "On"} ${when}, ${finiteNumber(pct).toFixed(1)}% of ${state.operator === "ALL" ? "" : operatorName(state.operator) + " "}bus arrivals at timing points were on time. The target for ${targetYearLabel()} is ${finiteNumber(state.target)}%${shortBy > 0 ? `, so buses are ${shortBy.toFixed(1)} points short` : ", and buses met it"}.`
+    ? `${day.period ? "Over" : "On"} ${when}, ${finiteNumber(pct).toFixed(1)}% of ${state.operator === "ALL" ? "" : operatorName(state.operator) + " "}readings at timing points were on time. ${targetPending() ? `No target for ${targetYearLabel()} has been published yet; the last, for ${lastTargetYearLabel()}, was ${finiteNumber(state.target)}%.` : `The target for ${targetYearLabel()} is ${finiteNumber(state.target)}%${shortBy > 0 ? `, so buses are ${shortBy.toFixed(1)} points short` : ", and buses met it"}.`}`
     : "No readings for this operator in this period.";
+  // How the rest missed, for the network or operator (planning #123).
+  $("h-split").innerHTML = hasReadings(overall) ? arrivalSplitHTML(overall) : "";
+  renderSixBands();
+  renderStrictFigure(overall);
   $("h-fill").style.width = Math.min(100, finiteNumber(pct)) + "%";
   $("h-fill").style.background = colour;
   $("h-tgt").style.left = state.target + "%";
-  $("h-tgt-label").textContent = `Target ${finiteNumber(state.target)}%`;
+  $("h-tgt-label").textContent = targetPending()
+    ? `Last target ${finiteNumber(state.target)}%`
+    : `Target ${finiteNumber(state.target)}%`;
   $("s-median").textContent = format.delaySeconds(overall.median_delay_s);
   $("s-seen").textContent = overall.coverage_pct != null ? `${Math.round(overall.coverage_pct)} in 100` : "–";
   $("s-routes").textContent = (opData.routes || []).filter(hasReadings).length.toLocaleString();
@@ -694,7 +737,7 @@ function arrivalSplitHTML(row) {
   if (!readings) return "";
   const veryLate = row.very_late == null ? null : Math.min(finiteNumber(row.very_late), finiteNumber(row.late));
   const parts = [
-    ["early", "Early", "left more than a minute before the timetable", finiteNumber(row.early)],
+    ["early", "Early", "more than a minute ahead of the timetable (the bus may have arrived early and waited)", finiteNumber(row.early)],
     ["ontime", "On time", "up to a minute early or under 6 minutes late", finiteNumber(row.on_time)],
     ["late", "Late", veryLate == null ? "6 minutes or more" : "6 to 20 minutes", finiteNumber(row.late) - (veryLate || 0)],
     ...(veryLate == null ? [] : [["verylate", "Very late", "20 minutes or more", veryLate]]),
@@ -704,6 +747,39 @@ function arrivalSplitHTML(row) {
     parts.map(([key, label, , n]) => `<i class="${key}" style="width:${pct(n)}%" title="${escapeHTML(label)}: ${Math.round(pct(n))}%"></i>`).join("")}</div>
     <ul class="split-legend">${parts.map(([key, label, what, n]) =>
       `<li><i class="${key}"></i><strong>${Math.round(pct(n))}%</strong> ${escapeHTML(label.toLowerCase())} <span class="faint">(${escapeHTML(what)})</span></li>`).join("")}</ul>`;
+}
+
+// All six bands (planning #124): the same colours, lighter and darker.
+const SIX_BANDS = [
+  ["early5", "5+ min early", "more than 5 minutes ahead of the timetable"],
+  ["early1", "1 to 5 min early", "1 to 5 minutes ahead"],
+  ["ontime", "On time", "up to a minute early or under 6 minutes late"],
+  ["late6", "6 to 10 min late", "6 to 10 minutes late"],
+  ["late10", "10 to 20 min late", "10 to 20 minutes late"],
+  ["late20", "20+ min late", "20 minutes or more late"],
+];
+
+function sixBandHTML(counts) {
+  if (!Array.isArray(counts) || counts.length !== SIX_BANDS.length) return "";
+  const values = counts.map((n) => finiteNumber(n));
+  const total = values.reduce((sum, n) => sum + n, 0);
+  if (!total) return "";
+  const pct = (n) => (100 * n) / total;
+  return `<div class="split six" role="img" aria-label="${escapeHTML(SIX_BANDS.map(([, label], i) => `${label} ${Math.round(pct(values[i]))}%`).join(", "))}">${
+    SIX_BANDS.map(([key, label], i) => `<i class="${key}" style="width:${pct(values[i])}%" title="${escapeHTML(label)}: ${Math.round(pct(values[i]))}%"></i>`).join("")}</div>
+    <ul class="split-legend">${SIX_BANDS.map(([key, label, what], i) =>
+      `<li><i class="${key}"></i><strong>${Math.round(pct(values[i]))}%</strong> ${escapeHTML(label.toLowerCase())} <span class="faint">(${escapeHTML(what)})</span></li>`).join("")}</ul>`;
+}
+
+async function renderSixBands() {
+  const panel = $("h-bands");
+  if (!panel || !panel.open) return;
+  const body = panel.querySelector(".bands-body");
+  const operator = state.operator;
+  const bands = (await loadHourly(operator))?.bands;
+  if (operator !== state.operator) return;
+  const counts = state.day?.period ? bands?.window : bands?.days?.[state.day?.service_date];
+  body.innerHTML = sixBandHTML(counts) || '<p class="small faint">The six bands are not available for this view.</p>';
 }
 
 // --- Network sections -----------------------------------------------------------------
@@ -1072,8 +1148,10 @@ async function load() {
 
   state.data = data;
   state.target = Math.min(100, Math.max(0,
-    finiteNumber(data.current_target_pct,
+    finiteNumber(data.current_target_pct ?? data.last_published_target_pct,
       finiteNumber(data.target_pct, DEFAULT_TARGET_PCT))));
+  state.targetStatus = String(data.current_target_status || "published");
+  state.lastTargetFinancialYear = String(data.last_published_target_financial_year || "");
   state.targetFinancialYear = String(data.current_target_financial_year || "");
   state.targetSource = String(data.current_target_source || "");
   state.targetSourceUrl = String(data.current_target_source_url || "");
@@ -1138,6 +1216,7 @@ function wireControls() {
       renderMap(currentOpData());
     });
   });
+  $("h-bands").addEventListener("toggle", renderSixBands);
   $("fleet-more").addEventListener("click", () => {
     state.fleetAll = !state.fleetAll;
     renderFleet(currentOpData());
